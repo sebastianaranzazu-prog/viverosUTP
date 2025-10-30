@@ -1,0 +1,68 @@
+
+╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+║                                        DIAGRAMA ENTIDAD-RELACIÓN - VIVEROS                                        ║
+╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+
+┌─────────────────┐        ┌─────────────────┐        ┌─────────────────┐        ┌─────────────────┐
+│    PRODUCTOR    │   1:N  │      FINCA      │   1:N  │     VIVERO      │   1:N  │      LABOR      │
+├─────────────────┤ ────── ├─────────────────┤ ────── ├─────────────────┤ ────── ├─────────────────┤
+│ id (PK)         │        │ id (PK)         │        │ id (PK)         │        │ id (PK)         │
+│ documento (UK)  │        │ numero_catastro │        │ codigo          │        │ fecha           │
+│ nombre          │        │ (UK)            │        │ tipo_cultivo    │        │ descripcion     │
+│ apellido        │        │ municipio       │        │ finca_id (FK)   │        │ vivero_id (FK)  │
+│ telefono        │        │ productor_id    │        │                 │        │                 │
+│ correo (UK)     │        │ (FK)            │        │                 │        │                 │
+└─────────────────┘        └─────────────────┘        └─────────────────┘        └─────────────────┘
+
+PRODUCTOS DE CONTROL (Entidades Independientes):
+
+┌─────────────────────────────┐    ┌──────────────────────────────┐    ┌──────────────────────────────┐
+│     PRODUCTO_CONTROL        │    │   PRODUCTO_CONTROL_HONGO     │    │   PRODUCTO_CONTROL_PLAGA     │
+├─────────────────────────────┤    ├──────────────────────────────┤    ├──────────────────────────────┤
+│ id (PK)                     │    │ id (PK)                      │    │ id (PK)                      │
+│ REGISTRO_ICA                │    │ registro_ICA                 │    │ registro_ICA                 │
+│ nombre                      │    │ nombre_producto              │    │ nombre_producto              │
+│ frecuencia_aplicacion       │    │ frecuencia_aplicacion        │    │ frecuencia_aplicacion        │
+│ valor                       │    │ valor                        │    │ valor                        │
+│                             │    │ periodo_carencia             │    │ periodo_carencia             │
+│                             │    │ nombre_hongo                 │    │                              │
+└─────────────────────────────┘    └──────────────────────────────┘    └──────────────────────────────┘
+
+┌────────────────────────────────────┐
+│  PRODUCTO_CONTROL_FERTILIZANTE     │
+├────────────────────────────────────┤
+│ id (PK)                            │
+│ registro_ICA                       │
+│ nombre_producto                    │
+│ frecuencia_aplicacion              │
+│ valor                              │
+│ fecha_ultima_aplicacion            │
+└────────────────────────────────────┘
+
+LEYENDA:
+═══════════════════════════════════════════════════════════════════════════════════════════════════
+(PK) = Clave Primaria (Primary Key)
+(FK) = Clave Foránea (Foreign Key)  
+(UK) = Campo Único (Unique Key)
+1:N  = Relación Uno a Muchos
+
+DESCRIPCIÓN DE RELACIONES:
+═══════════════════════════════════════════════════════════════════════════════════════════════════
+• PRODUCTOR → FINCA: Un productor puede tener múltiples fincas
+• FINCA → VIVERO: Una finca puede contener múltiples viveros  
+• VIVERO → LABOR: En un vivero se pueden realizar múltiples labores
+
+CARACTERÍSTICAS DEL MODELO:
+═══════════════════════════════════════════════════════════════════════════════════════════════════
+✓ Integridad referencial con CASCADE (eliminar padre elimina hijos)
+✓ Campos únicos para evitar duplicados (documento, correo, numero_catastro)
+✓ Estructura jerárquica clara: Productor → Finca → Vivero → Labor
+✓ Entidades de productos independientes para catálogos
+✓ Diseño escalable para futuras mejoras
+
+POSIBLES MEJORAS FUTURAS:
+═══════════════════════════════════════════════════════════════════════════════════════════════════
+→ Conectar productos de control con labores (relación M:N)
+→ Agregar auditoría (timestamps de creación/modificación)
+→ Incluir estados de labores (pendiente, en progreso, completada)
+→ Añadir geolocalización (coordenadas GPS)
