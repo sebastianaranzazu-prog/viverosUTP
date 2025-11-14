@@ -12,7 +12,7 @@ class RelacionesViveroTest(TestCase):
             telefono="3105551234",
             correo="andres@correo.com"
         )
-
+    
         # Crear una finca asociada al productor
         self.finca = Finca.objects.create(
             productor=self.productor,
