@@ -51,3 +51,5 @@ class ProductoControlPlagaAdmin(admin.ModelAdmin):
 class ProductoControlFertilizanteAdmin(admin.ModelAdmin):
     list_display = ("registro_ICA", "nombre_producto", "frecuencia_aplicacion", "valor", "fecha_ultima_aplicacion")
     search_fields = ("nombre_producto",)
+
+
