@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación - Sistema de Gestión de Viveros</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow-x: hidden;
+        }
+
+        .presentation {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .slide {
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            margin: 30px 0;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            text-align: center;
+            color: white;
+            padding: 100px 60px;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            font-size: 2.5em;
+            color: #667eea;
+            margin-bottom: 30px;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            color: #764ba2;
+            margin: 25px 0 15px 0;
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            opacity: 0.9;
+        }
+
+        .content {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .difficulty {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .solution {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #ffc107 0%, #ff9800 100%);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        ul, ol {
+            margin-left: 40px;
+            margin-top: 15px;
+        }
+
+        li {
+            margin: 15px 0;
+            font-size: 1.1em;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .emoji {
+            font-size: 2em;
+            margin-right: 10px;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.3em;
+            color: #667eea;
+            border-left: 4px solid #667eea;
+            padding-left: 20px;
+            margin: 30px 0;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            border-left: 3px solid #667eea;
+            margin: 30px 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -46px;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid white;
+        }
+
+        .author {
+            text-align: right;
+            margin-top: 30px;
+            font-size: 1.1em;
+            color: #666;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        @media print {
+            .slide {
+                page-break-after: always;
+                margin: 0;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        
+        <!-- SLIDE 1: TÍTULO -->
+        <div class="slide slide-title">
+            <h1>🌱 Sistema de Gestión de Viveros</h1>
+            <p class="subtitle">Dificultades, Aprendizajes y Soluciones</p>
+            <p style="margin-top: 40px; font-size: 1.2em;">
+                Laboratorio de Proyecto de Software<br>
+                Noviembre 2025
+            </p>
+        </div>
+
+        <!-- SLIDE 2: INTRODUCCIÓN -->
+        <div class="slide">
+            <h2>📋 Contexto del Proyecto</h2>
+            <div class="content">
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Historias de Usuario</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">19</div>
+                        <div class="stat-label">Pruebas Unitarias</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Modelos Principales</div>
+                    </div>
+                </div>
+
+                <h3>Tecnologías Utilizadas:</h3>
+                <ul>
+                    <li><strong>Framework:</strong> Django 5.2.5</li>
+                    <li><strong>Base de Datos:</strong> SQLite3</li>
+                    <li><strong>Control de Versiones:</strong> Git</li>
+                    <li><strong>Testing:</strong> Django TestCase</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: DIFICULTAD 1 - FRAMEWORK -->
+        <div class="slide">
+            <h2>⚠️ Dificultad #1: Sistema ORM de Django</h2>
+            
+            <div class="difficulty">
+                <h3><span class="emoji">🔴</span>El Problema</h3>
+                <p>Al inicio, tuvimos dificultades entendiendo cómo funcionaban las relaciones ForeignKey y la eliminación en cascada.</p>
+                
+                <div class="code-block">
+                    # ❌ Código inicial problemático
+                    class Finca(models.Model):
+                    productor = models.ForeignKey(Productor)  # ¿Qué pasa al eliminar?
+                </div>
+                
+                <p style="margin-top: 15px;"><strong>Síntoma:</strong> Los registros huérfanos quedaban en la base de datos cuando eliminábamos un productor.</p>
+            </div>
+
+            <div class="solution">
+                <h3><span class="emoji">✅</span>La Solución</h3>
+                <p>Aprendimos a usar correctamente los parámetros <span class="highlight">on_delete</span> y <span class="highlight">related_name</span>:</p>
+                
+                <div class="code-block">
+                    # ✅ Solución correcta
+                    class Finca(models.Model):
+                    productor = models.ForeignKey(
+                        Productor,
+                        on_delete=models.CASCADE,  # Elimina fincas al eliminar productor
+                        related_name='fincas'       # Permite: productor.fincas.all()
+                    )
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: DIFICULTAD 2 - MIGRACIONES -->
+        <div class="slide">
+            <h2>⚠️ Dificultad #2: Gestión de Migraciones</h2>
+            
+            <div class="difficulty">
+                <h3><span class="emoji">🔴</span>El Problema</h3>
+                <p>Conflictos al hacer cambios en los modelos sin planificación:</p>
+                <ul>
+                    <li>Migraciones que fallaban por dependencias circulares</li>
+                    <li>Pérdida de datos en desarrollo</li>
+                    <li>Migraciones que no se aplicaban correctamente</li>
+                </ul>
+                
+                <div class="code-block">
+                    # Error común que encontramos:
+                    django.db.migrations.exceptions.InconsistentMigrationHistory:
+                    Migration gestion.0004_auto is applied before its dependency
+                    gestion.0003_auto on database 'default'.
+                </div>
+            </div>
+
+            <div class="solution">
+                <h3><span class="emoji">✅</span>La Solución</h3>
+                <p><strong>Establecimos un flujo de trabajo claro:</strong></p>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <strong>1. Planificar cambios</strong> antes de modificar modelos
+                    </div>
+                    <div class="timeline-item">
+                        <strong>2. Hacer backup</strong> de la base de datos
+                    </div>
+                    <div class="timeline-item">
+                        <strong>3. Crear migración:</strong> <code>python manage.py makemigrations</code>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>4. Revisar migración</strong> generada antes de aplicarla
+                    </div>
+                    <div class="timeline-item">
+                        <strong>5. Aplicar:</strong> <code>python manage.py migrate</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: DIFICULTAD 3 - VALIDACIONES -->
+        <div class="slide">
+            <h2>⚠️ Dificultad #3: Validaciones del Modelo</h2>
+            
+            <div class="difficulty">
+                <h3><span class="emoji">🔴</span>El Problema</h3>
+                <p>Confusión entre validaciones a nivel de base de datos vs validaciones de Django:</p>
+                
+                <div class="code-block">
+                    # ❌ Esto NO valida automáticamente:
+                    class Labor(models.Model):
+                    fecha = models.DateField()
+                    
+                    def clean(self):
+                    if self.fecha > date.today():
+                    raise ValidationError("Fecha futura no permitida")
+
+                    # El método clean() NO se ejecuta en .create() o .save()
+                    labor = Labor.objects.create(fecha=fecha_futura)  # ¡Se guarda sin validar!
+                </div>
+            </div>
+
+            <div class="solution">
+                <h3><span class="emoji">✅</span>La Solución</h3>
+                <p>Aprendimos a llamar explícitamente <span class="highlight">full_clean()</span>:</p>
+                
+                <div class="code-block">
+                    # ✅ Forma correcta:
+                    labor = Labor(fecha=fecha, descripcion=desc, vivero=vivero)
+                    labor.full_clean()  # Ejecuta todas las validaciones
+                    labor.save()
+
+                    # O en vistas con forms:
+                    if form.is_valid():  # Django forms llama a full_clean() automáticamente
+                        form.save()
+                </div>
+                
+                <p style="margin-top: 15px;"><strong>Lección aprendida:</strong> Los constraints de BD (unique, not null) se validan siempre, pero las validaciones de clean() requieren llamada explícita.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: DIFICULTAD 4 - TESTING -->
+        <div class="slide">
+            <h2>⚠️ Dificultad #4: Pruebas Unitarias</h2>
+            
+            <div class="difficulty">
+                <h3><span class="emoji">🔴</span>El Problema</h3>
+                <p>Inicialmente las pruebas eran frágiles y se rompían fácilmente:</p>
+                <ul>
+                    <li>Dependencias entre pruebas (una afectaba a otra)</li>
+                    <li>No entendíamos el aislamiento de TestCase</li>
+                    <li>Dificultad para probar eliminación en cascada</li>
+                </ul>
+            </div>
+
+            <div class="solution">
+                <h3><span class="emoji">✅</span>La Solución</h3>
+                <p><strong>Aprendimos el patrón Arrange-Act-Assert:</strong></p>
+                
+                <div class="code-block">
+                    def test_eliminar_productor_elimina_fincas_en_cascada(self):
+                    # ARRANGE: Preparar datos
+                    finca = Finca.objects.create(**self.finca_data)
+                    finca_id = finca.id
+                    
+                    # ACT: Ejecutar acción
+                    self.productor.delete()
+                    
+                    # ASSERT: Verificar resultado
+                    self.assertFalse(Finca.objects.filter(id=finca_id).exists())
+                </div>
+                
+                <p style="margin-top: 15px;"><strong>Descubrimientos importantes:</strong></p>
+                <ul>
+                    <li>Cada test tiene su propia base de datos temporal</li>
+                    <li>setUp() se ejecuta antes de cada prueba</li>
+                    <li>Los datos se limpian automáticamente entre pruebas</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: DIFICULTAD 5 - GIT BRANCHES -->
+        <div class="slide">
+            <h2>⚠️ Dificultad #5: Gestión de Ramas en Git</h2>
+            
+            <div class="difficulty">
+                <h3><span class="emoji">🔴</span>El Problema</h3>
+                <p>Conflictos de merge y confusión con el flujo de trabajo:</p>
+                <ul>
+                    <li>Todos trabajando en <code>main</code> → conflictos constantes</li>
+                    <li>Commits directos sin revisar</li>
+                    <li>Pérdida de trabajo por sobrescritura accidental</li>
+                    <li>Dificultad para revertir cambios problemáticos</li>
+                </ul>
+                
+                <div class="code-block">
+                    # ❌ Flujo problemático inicial:
+                    git add .
+                    git commit -m "cambios"
+                    git push origin main  # ¡CONFLICTO!
+                </div>
+            </div>
+
+            <div class="solution">
+                <h3><span class="emoji">✅</span>La Solución</h3>
+                <p><strong>Implementamos Git Flow simplificado:</strong></p>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h4>🌳 Ramas Principales</h4>
+                        <ul style="margin-left: 20px; font-size: 0.95em;">
+                            <li><code>Master</code>: Producción</li>
+                            <li><code>develop</code>: Desarrollo</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>🌿 Ramas de Features</h4>
+                        <ul style="margin-left: 20px; font-size: 0.95em;">
+                            <li><code>feature/HU1-Viveros1</code></li>
+                            <li><code>feature/HU2-viveros2</code></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: WORKFLOW GIT -->
+        <div class="slide">
+            <h2>🔄 Flujo de Trabajo Git Implementado</h2>
+            
+            <div class="content">
+                <div class="code-block">
+                    # 1. Crear rama para nueva feature
+                    git checkout develop
+                    git pull origin develop
+                    git checkout -b feature/HU1-productor
+
+                    # 2. Trabajar en la feature
+                    git add gestion/models.py gestion/tests.py
+                    git commit -m "feat: Agregar modelo Productor con validaciones"
+
+                    # 3. Actualizar con cambios de develop
+                    git checkout develop
+                    git pull origin develop
+                    git checkout feature/HU1-productor
+                    git merge develop  # Resolver conflictos si existen
+
+                    # 4. Push de la feature
+                    git push origin feature/HU1-productor
+
+                    # 5. Crear Pull Request en GitHub/GitLab
+                    # 6. Code review del equipo
+                    # 7. Merge a develop después de aprobación
+
+                    # 8. Cuando develop está estable
+                    git checkout main
+                    git merge develop
+                    git push origin main
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: CONVENCIONES GIT -->
+        <div class="slide">
+            <h2>📝 Convenciones de Commits que Adoptamos</h2>
+            
+            <div class="content">
+                <p>Implementamos <strong>Conventional Commits</strong> para mensajes claros:</p>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h4>✨ feat:</h4>
+                        <p>Nueva funcionalidad</p>
+                        <code style="font-size: 0.85em;">feat: Agregar validación de fecha en Labor</code>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>🐛 fix:</h4>
+                        <p>Corrección de bugs</p>
+                        <code style="font-size: 0.85em;">fix: Corregir eliminación en cascada</code>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>🧪 test:</h4>
+                        <p>Agregar/modificar tests</p>
+                        <code style="font-size: 0.85em;">test: Agregar pruebas de Vivero</code>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>📚 docs:</h4>
+                        <p>Documentación</p>
+                        <code style="font-size: 0.85em;">docs: Actualizar README con setup</code>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>♻️ refactor:</h4>
+                        <p>Refactorización</p>
+                        <code style="font-size: 0.85em;">refactor: Simplificar validación</code>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>🎨 style:</h4>
+                        <p>Formato de código</p>
+                        <code style="font-size: 0.85em;">style: Aplicar PEP8</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: DIFICULTAD 6 - QUERIES -->
+        <div class="slide">
+            <h2>⚠️ Dificultad #6: Queries Ineficientes (N+1)</h2>
+            
+            <div class="difficulty">
+                <h3><span class="emoji">🔴</span>El Problema</h3>
+                <p>Consultas múltiples que ralentizaban la aplicación:</p>
+                
+                <div class="code-block">
+                    # ❌ Código ineficiente (N+1 queries):
+                    productores = Productor.objects.all()
+                    for productor in productores:
+                    print(productor.fincas.all())  # ¡1 query por productor!
+                    for finca in productor.fincas.all():
+                    print(finca.viveros.all())  # ¡Más queries!
+
+                    # Resultado: Si hay 10 productores con 5 fincas cada uno:
+                    # 1 query inicial + 10 queries de fincas + 50 queries de viveros = 61 queries!
+                </div>
+            </div>
+
+            <div class="solution">
+                <h3><span class="emoji">✅</span>La Solución</h3>
+                <p>Uso de <span class="highlight">select_related</span> y <span class="highlight">prefetch_related</span>:</p>
+                
+                <div class="code-block">
+                # ✅ Código optimizado (2-3 queries):
+                productores = Productor.objects.prefetch_related(
+                    'fincas__viveros'  # Carga todo en 3 queries
+                )
+                for productor in productores:
+                for finca in productor.fincas.all():
+                    print(finca.viveros.all())  # ¡Sin queries adicionales!
+
+                # select_related: Para ForeignKey (JOIN en SQL)
+                vivero = Vivero.objects.select_related('finca__productor').first()
+
+                # prefetch_related: Para relaciones inversas o ManyToMany
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 11: LECCIONES APRENDIDAS -->
+        <div class="slide">
+            <h2>💡 Principales Lecciones Aprendidas</h2>
+            
+            <div class="content">
+                <div class="grid">
+                    <div class="card">
+                        <span class="emoji">📖</span>
+                        <h3>Documentación es clave</h3>
+                        <p>Leer la documentación oficial de Django nos ahorró horas de debugging.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <span class="emoji">🧪</span>
+                        <h3>Test First</h3>
+                        <p>Escribir tests antes o durante el desarrollo detecta problemas temprano.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <span class="emoji">🔄</span>
+                        <h3>Git Flow</h3>
+                        <p>Las ramas y pull requests mejoran la calidad del código.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <span class="emoji">👥</span>
+                        <h3>Code Review</h3>
+                        <p>Revisar código ajeno nos enseñó mejores prácticas.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <span class="emoji">⚡</span>
+                        <h3>Optimización</h3>
+                        <p>Medir antes de optimizar. Django Debug Toolbar fue invaluable.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <span class="emoji">🎯</span>
+                        <h3>KISS Principle</h3>
+                        <p>Keep It Simple: La solución más simple suele ser la mejor.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 12: HERRAMIENTAS QUE NOS AYUDARON -->
+        <div class="slide">
+            <h2>🛠️ Herramientas que Facilitaron el Desarrollo</h2>
+            
+            <div class="content">
+                <h3>Framework y Extensiones:</h3>
+                <ul>
+                    <li><strong>Django Extensions:</strong> <code>python manage.py shell_plus</code> para testing rápido</li>
+                    <li><strong>Django Debug Toolbar:</strong> Visualización de queries SQL</li>
+                    <li><strong>Coverage.py:</strong> Medición de cobertura de tests</li>
+                </ul>
+
+                <h3 style="margin-top: 30px;">Control de Versiones:</h3>
+                <ul>
+                    <li><strong>GitKraken / SourceTree:</strong> Visualización del historial de commits</li>
+                    <li><strong>GitHub Desktop:</strong> Interface amigable para Git</li>
+                    <li><strong>VS Code Git:</strong> Integración directa en el editor</li>
+                </ul>
+
+                <h3 style="margin-top: 30px;">Testing y Debug:</h3>
+                <div class="code-block">
+                    # Comando útil para ver queries generadas:
+                    python manage.py test --debug-sql
+
+                    # Cobertura de tests:
+                    coverage run --source='.' manage.py test gestion
+                    coverage report
+                    coverage html  # Genera reporte visual
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 13: MEJORES PRÁCTICAS -->
+        <div class="slide">
+            <h2>✅ Mejores Prácticas que Implementamos</h2>
+            
+            <div class="content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <strong>Nombres descriptivos:</strong> <code>crear_productor_con_finca</code> vs <code>func1</code>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <strong>Docstrings en todo:</strong> Funciones, clases y métodos documentados
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <strong>DRY (Don't Repeat Yourself):</strong> Reutilizar código mediante funciones
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <strong>Validaciones en el modelo:</strong> No confiar en validaciones solo del frontend
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <strong>Transacciones atómicas:</strong> Usar <code>@transaction.atomic</code> para operaciones críticas
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <strong>Manejo de errores:</strong> Try-except con mensajes informativos
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <strong>Logging:</strong> Registrar eventos importantes para debugging
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 14: ESTRATEGIA DE RAMAS -->
+        <div class="slide">
+            <h2>🌳 Estrategia de Ramas Definitiva</h2>
+            
+            <div class="content">
+                <div class="code-block">
+main (producción)
+  │
+  └── develop (desarrollo)
+       │
+       ├── feature/HU1-productor-finca
+       │    ├── Modelos Productor y Finca
+       │    ├── Validaciones y tests
+       │    └── Vistas básicas
+       │
+       ├── feature/HU2-viveros-labores
+       │    ├── Modelos Vivero y Labor
+       │    ├── Validaciones y tests
+       │    └── Vistas de gestión
+       │
+       ├── feature/tests-unitarios
+       │    └── Completar cobertura de tests
+       │
+       └── feature/documentacion
+            └── README, docstrings, comentarios
+                </div>
+
+                <h3 style="margin-top: 30px;">Reglas que seguimos:</h3>
+                <ol>
+                    <li>Nunca hacer commit directamente a <code>main</code></li>
+                    <li>Crear feature branch desde <code>develop</code> actualizado</li>
+                    <li>Commits pequeños y frecuentes con mensajes claros</li>
+                    <li>Pull request requiere aprobación de al menos 1 compañero</li>
+                    <li>Tests deben pasar antes de merge</li>
+                    <li>Resolver conflictos localmente antes del push</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- SLIDE 15: ERRORES COMUNES -->
+        <div class="slide">
+            <h2>🚫 Errores Comunes que Cometimos</h2>
+            
+            <div class="content">
+                <div class="difficulty" style="margin-bottom: 20px;">
+                    <h4>1. Olvidar activar el entorno virtual</h4>
+                    <p>Instalábamos paquetes globalmente y luego no funcionaban en el proyecto.</p>
+                    <div class="code-block">
+                        # Solución: Siempre activar primero
+                        source venv/bin/activate
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
