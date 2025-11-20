@@ -242,7 +242,16 @@
                 Laboratorio de Proyecto de Software<br>
                 Noviembre 2025
             </p>
+                <div>
+                    <h5>
+                        <br><br><br>
+                        <p>Sebastian Aranzazu Herrera</p>
+                        <p>Andres Felipe Trejos Orozco</p>
+                    </h5>
+                </div>
         </div>
+      
+       
 
         <!-- SLIDE 2: INTRODUCCIÓN -->
         <div class="slide">
@@ -265,10 +274,10 @@
 
                 <h3>Tecnologías Utilizadas:</h3>
                 <ul>
-                    <li><strong>Framework:</strong> Django 5.2.5</li>
+                    <li><strong>Framework:</strong> Django</li>
                     <li><strong>Base de Datos:</strong> SQLite3</li>
                     <li><strong>Control de Versiones:</strong> Git</li>
-                    <li><strong>Testing:</strong> Django TestCase</li>
+                    <!-- <li><strong>Testing:</strong> Django TestCase</li> -->
                 </ul>
             </div>
         </div>
@@ -284,7 +293,10 @@
                 <div class="code-block">
                     # ❌ Código inicial problemático
                     class Finca(models.Model):
-                    productor = models.ForeignKey(Productor)  # ¿Qué pasa al eliminar?
+                    <br>
+                    productor = models.ForeignKey(Productor)
+                    <br>  
+                    # ¿Qué pasa al eliminar?
                 </div>
                 
                 <p style="margin-top: 15px;"><strong>Síntoma:</strong> Los registros huérfanos quedaban en la base de datos cuando eliminábamos un productor.</p>
@@ -297,10 +309,12 @@
                 <div class="code-block">
                     # ✅ Solución correcta
                     class Finca(models.Model):
-                    productor = models.ForeignKey(
-                        Productor,
-                        on_delete=models.CASCADE,  # Elimina fincas al eliminar productor
-                        related_name='fincas'       # Permite: productor.fincas.all()
+                    <br>
+                    productor = models.ForeignKey(Productor, on_delete=models.CASCADE,  
+                        <br># Elimina fincas al eliminar productor
+                        <br>related_name='fincas'       
+                        <br># Permite: productor.fincas.all()
+                        <br>
                     )
                 </div>
             </div>
@@ -366,7 +380,7 @@
                     def clean(self):
                     if self.fecha > date.today():
                     raise ValidationError("Fecha futura no permitida")
-
+                    <br>
                     # El método clean() NO se ejecuta en .create() o .save()
                     labor = Labor.objects.create(fecha=fecha_futura)  # ¡Se guarda sin validar!
                 </div>
@@ -411,14 +425,14 @@
                 
                 <div class="code-block">
                     def test_eliminar_productor_elimina_fincas_en_cascada(self):
-                    # ARRANGE: Preparar datos
+                    <br># ARRANGE: Preparar datos
                     finca = Finca.objects.create(**self.finca_data)
                     finca_id = finca.id
                     
-                    # ACT: Ejecutar acción
+                    <br># ACT: Ejecutar acción
                     self.productor.delete()
                     
-                    # ASSERT: Verificar resultado
+                    <br># ASSERT: Verificar resultado
                     self.assertFalse(Finca.objects.filter(id=finca_id).exists())
                 </div>
                 
@@ -447,9 +461,9 @@
                 
                 <div class="code-block">
                     # ❌ Flujo problemático inicial:
-                    git add .
-                    git commit -m "cambios"
-                    git push origin main  # ¡CONFLICTO!
+                    <br>git add .
+                    <br>git commit -m "pruebas"
+                    <br>git push origin main  # ¡CONFLICTO!
                 </div>
             </div>
 
@@ -468,8 +482,8 @@
                     <div class="card">
                         <h4>🌿 Ramas de Features</h4>
                         <ul style="margin-left: 20px; font-size: 0.95em;">
-                            <li><code>feature/HU1-Viveros1</code></li>
-                            <li><code>feature/HU2-viveros2</code></li>
+                            <li><code>feature/Viveros1</code></li>
+                            <li><code>feature/viveros2</code></li>
                         </ul>
                     </div>
                 </div>
@@ -483,36 +497,36 @@
             <div class="content">
                 <div class="code-block">
                     # 1. Crear rama para nueva feature
-                    git checkout develop
-                    git pull origin develop
-                    git checkout -b feature/HU1-productor
+                    <br>git checkout develop
+                    <br>git pull origin develop
+                    <br>git checkout -b feature/Viveros1
 
-                    # 2. Trabajar en la feature
-                    git add gestion/models.py gestion/tests.py
-                    git commit -m "feat: Agregar modelo Productor con validaciones"
+                    <br><br># 2. Trabajar en la feature
+                    <br>git add gestion/models.py gestion/tests.py
+                    <br>git commit -m "feat: Agregar modelo Productor con validaciones"
 
-                    # 3. Actualizar con cambios de develop
-                    git checkout develop
-                    git pull origin develop
-                    git checkout feature/HU1-productor
-                    git merge develop  # Resolver conflictos si existen
+                    <br><br># 3. Actualizar con cambios de develop
+                    <br>git checkout develop
+                    <br>git pull origin develop
+                    <br>git checkout feature/Viveros1
+                    <br>git merge develop  # Resolver conflictos si existen
 
-                    # 4. Push de la feature
-                    git push origin feature/HU1-productor
+                    <br><br># 4. Push de la feature
+                    <br>git push origin feature/Viiiros1
 
-                    # 5. Crear Pull Request en GitHub/GitLab
-                    # 6. Code review del equipo
-                    # 7. Merge a develop después de aprobación
+                    <br><br># 5. Crear Pull Request en GitHub/GitLab
+                    <br># 6. Code review del equipo
+                    <br># 7. Merge a develop después de aprobación
 
-                    # 8. Cuando develop está estable
-                    git checkout main
-                    git merge develop
-                    git push origin main
+                    <br><br># 8. Cuando develop está estable
+                    <br>git checkout main
+                    <br>git merge develop
+                    <br>git push origin main
                 </div>
             </div>
         </div>
 
-        <!-- SLIDE 9: CONVENCIONES GIT -->
+        <!-- SLIDE 9: CONVENCIONES GIT
         <div class="slide">
             <h2>📝 Convenciones de Commits que Adoptamos</h2>
             
@@ -558,8 +572,9 @@
                 </div>
             </div>
         </div>
+         -->
 
-        <!-- SLIDE 10: DIFICULTAD 6 - QUERIES -->
+        <!-- SLIDE 10: DIFICULTAD 6 - QUERIES 
         <div class="slide">
             <h2>⚠️ Dificultad #6: Queries Ineficientes (N+1)</h2>
             
@@ -600,6 +615,7 @@
                 </div>
             </div>
         </div>
+        -->
 
         <!-- SLIDE 11: LECCIONES APRENDIDAS -->
         <div class="slide">
@@ -670,7 +686,7 @@
                     # Comando útil para ver queries generadas:
                     python manage.py test --debug-sql
 
-                    # Cobertura de tests:
+                    <br><br># Cobertura de tests:
                     coverage run --source='.' manage.py test gestion
                     coverage report
                     coverage html  # Genera reporte visual
@@ -678,7 +694,9 @@
             </div>
         </div>
 
+       
         <!-- SLIDE 13: MEJORES PRÁCTICAS -->
+        <!--- 
         <div class="slide">
             <h2>✅ Mejores Prácticas que Implementamos</h2>
             
@@ -714,8 +732,10 @@
                 </div>
             </div>
         </div>
+        -->
 
         <!-- SLIDE 14: ESTRATEGIA DE RAMAS -->
+         <!-- 
         <div class="slide">
             <h2>🌳 Estrategia de Ramas Definitiva</h2>
             
@@ -725,22 +745,17 @@ main (producción)
   │
   └── develop (desarrollo)
        │
-       ├── feature/HU1-productor-finca
+       ├── feature/Viveros1
        │    ├── Modelos Productor y Finca
        │    ├── Validaciones y tests
        │    └── Vistas básicas
        │
-       ├── feature/HU2-viveros-labores
+       ├── feature/Viveros2
        │    ├── Modelos Vivero y Labor
        │    ├── Validaciones y tests
        │    └── Vistas de gestión
-       │
-       ├── feature/tests-unitarios
-       │    └── Completar cobertura de tests
-       │
-       └── feature/documentacion
-            └── README, docstrings, comentarios
-                </div>
+      
+       
 
                 <h3 style="margin-top: 30px;">Reglas que seguimos:</h3>
                 <ol>
@@ -753,8 +768,10 @@ main (producción)
                 </ol>
             </div>
         </div>
+        -->
 
         <!-- SLIDE 15: ERRORES COMUNES -->
+         <!--- 
         <div class="slide">
             <h2>🚫 Errores Comunes que Cometimos</h2>
             
@@ -767,6 +784,15 @@ main (producción)
                         source venv/bin/activate
                     </div>
                 </div>
+            </div>
+        </div>
+        -->
+
+        <!-- Agradecimientos -->
+        
+        <div class="slide">
+            <div class="slide slide-title">
+                <h1>Muchas Gracias por su Atención</h1>
             </div>
         </div>
     </body>
